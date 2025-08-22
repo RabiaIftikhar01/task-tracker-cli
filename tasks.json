@@ -3,5 +3,10 @@
     "id": 1,
     "desc": "Submit Paper",
     "done": true
+  },
+  {
+    "id": 2,
+    "desc": "Apply for vis",
+    "done": true
   }
 ]

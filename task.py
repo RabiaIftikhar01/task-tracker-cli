@@ -27,7 +27,13 @@ def add_task(description):
     tasks.append(task)
     save_tasks(tasks)
     print(f"Task added: {description} ✅")
-
+def delete_task(task_id):
+    tasks = load_tasks()
+    for task in tasks:
+        if (task['id']==task_id):
+            tasks.remove(task)
+            save_tasks(tasks)
+            print(f"Task removed: {task_id} ✅")
 
 def list_tasks():
     tasks = load_tasks()
@@ -58,6 +64,7 @@ Commands:
   add "description"   Add a new task
   list                List all tasks
   done ID             Mark task with given ID as done
+  delete ID           Delete task with given ID
   help                Show this help message
 """)
 
@@ -82,6 +89,11 @@ def main():
             print("Error: Task ID required")
             return
         mark_done(int(sys.argv[2]))
+    elif command == "delete":
+        if len(sys.argv) < 3 or not sys.argv[2].isdigit():
+            print("Error: Task ID required")
+            return
+        delete_task(int(sys.argv[2]))
     else:
         show_help()
 
